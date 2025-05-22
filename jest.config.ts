@@ -14,6 +14,7 @@ const config: Config = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '^.+\\.(css|less|sass|scss)$': 'identity-obj-proxy',
+    '^components/(.*)$': '<rootDir>/src/components/$1',
   }
 };
 
