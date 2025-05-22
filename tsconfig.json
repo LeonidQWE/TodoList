@@ -18,6 +18,6 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
   },
-  "include": ["src"],
+  "include": ["src", "internal"],
   "exclude": ["node_modules"],
 }
