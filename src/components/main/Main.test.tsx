@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Main } from './Main';
 
 describe('Main', () => {
@@ -10,5 +10,11 @@ describe('Main', () => {
     const { container } = render(<Main />);
 
     expect(container.firstChild).toHaveClass('main');
+  })
+
+  it('should render Main with title', () => {
+    render(<Main />);
+
+    expect(screen.getByText('Todo List')).toBeInTheDocument();
   })
 });
