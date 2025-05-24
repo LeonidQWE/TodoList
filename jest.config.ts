@@ -3,7 +3,13 @@ import type {Config} from 'jest';
 const config: Config = {
   verbose: true,
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx,js,jsx}',
+    '!scr/**/index.ts',
+    '!src/main.tsx',
+    '!src/vite-env.d.ts',
+    '!src/App.tsx',
+  ],
   coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/internal/jest.setup.ts'],
