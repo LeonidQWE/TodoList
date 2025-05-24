@@ -1,0 +1,23 @@
+.todoForm {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 3rem);
+  width: 60%;
+  margin: clamp(1rem, 5vw, 2rem) auto 0 auto;
+}
+
+.todoFormSubmit {
+  font-size: clamp(1rem, 4vw, 2rem);
+  padding: clamp(0.3rem, 2vw, 0.8rem) clamp(0.5rem, 2vw, 1.5rem);
+  border-radius: 10px;
+  background-color: rgba(8, 188, 8, 0.75);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  .todoForm {
+    width: 100%;
+  }
+}
