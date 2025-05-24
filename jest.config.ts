@@ -5,7 +5,7 @@ const config: Config = {
   collectCoverage: true,
   collectCoverageFrom: [
     'src/**/*.{ts,tsx,js,jsx}',
-    '!scr/**/index.ts',
+    '!src/**/index.ts',
     '!src/main.tsx',
     '!src/vite-env.d.ts',
     '!src/App.tsx',
@@ -21,6 +21,9 @@ const config: Config = {
   moduleNameMapper: {
     '^.+\\.(css|less|sass|scss)$': 'identity-obj-proxy',
     '^components/(.*)$': '<rootDir>/src/components/$1',
+    '^components$': '<rootDir>/src/components/index.ts',
+    '^classes/(.*)$': '<rootDir>/src/classes/$1',
+    '^hooks/(.*)$': '<rootDir>/src/hooks/$1',
   }
 };
 
