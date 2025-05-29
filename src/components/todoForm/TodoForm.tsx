@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { CommonField } from 'components';
 import s from './TodoForm.module.scss';
-import { CommonField } from 'components/commonField/commonField';
 
 type TodoFormProps = {
   addTodo: (text: string) => void
