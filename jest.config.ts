@@ -24,6 +24,7 @@ const config: Config = {
     '^components$': '<rootDir>/src/components/index.ts',
     '^classes/(.*)$': '<rootDir>/src/classes/$1',
     '^hooks/(.*)$': '<rootDir>/src/hooks/$1',
+    '^tests/(.*)$': '<rootDir>/src/tests/$1',
   }
 };
 
