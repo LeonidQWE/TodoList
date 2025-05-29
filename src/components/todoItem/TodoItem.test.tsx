@@ -1,14 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import { TodoItem } from './TodoItem';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { setupTodoItem } from 'tests/helpers/setupTodoItem.utils';
 
 describe ('TodoItem', () => {
   it('should render TodoItem', () => {
-    const todo = { id: '1', title: 'Test todo', completed: false };
-    const deleteTodo = jest.fn();
-    const toggleTodo = jest.fn();
-
-    render(<TodoItem todo={todo} deleteTodo={deleteTodo} toggleCompleteTodo={toggleTodo}/>)
+    setupTodoItem();
 
     const todoElement = screen.getByTestId('todoItem');
     const todoTitleElement = screen.getByText('Test todo');
@@ -20,11 +16,7 @@ describe ('TodoItem', () => {
   });
 
   it('should render TodoItem with true completed', () => {
-    const todo = { id: '1', title: 'Test todo', completed: true };
-    const deleteTodo = jest.fn();
-    const toggleTodo = jest.fn();
-
-    render(<TodoItem todo={todo} deleteTodo={deleteTodo} toggleCompleteTodo={toggleTodo}/>)
+    setupTodoItem({ completed: true });
 
     const todoElement = screen.getByTestId('todoItem');
 
@@ -33,11 +25,7 @@ describe ('TodoItem', () => {
   })
 
   it('should click complete button', async () => {
-    const todo = { id: '1', title: 'Test todo', completed: false };
-    const deleteTodo = jest.fn();
-    const toggleTofo = jest.fn();
-
-    render(<TodoItem todo={todo} deleteTodo={deleteTodo} toggleCompleteTodo={toggleTofo}/>)
+    const { toggleTodo } = setupTodoItem();
 
     const todoCompleteBtn = screen.getByTestId('todoCompleteBtn');
     const todoElement = screen.getByTestId('todoItem');
@@ -46,16 +34,12 @@ describe ('TodoItem', () => {
     expect(todoElement).not.toHaveClass('todoCompleted');
 
     await userEvent.click(todoCompleteBtn);
-    
-    expect(toggleTofo).toHaveBeenCalledTimes(1);
+
+    expect(toggleTodo).toHaveBeenCalledTimes(1);
   });
 
   it('should click delete buttun', async () => {
-    const todo = { id: '1', title: 'Test todo', completed: false };
-    const deleteTodo = jest.fn();
-    const toggleTodo = jest.fn();
-
-    render(<TodoItem todo={todo} deleteTodo={deleteTodo} toggleCompleteTodo={toggleTodo}/>);
+    const { deleteTodo } = setupTodoItem();
 
     const todoDeleteBtn = screen.getByTestId('todoDeleteBtn');
 
