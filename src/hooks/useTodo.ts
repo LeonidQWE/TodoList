@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { TodoTask } from 'classes/TodoTask';
 import { Todo } from 'types/Todo';
 
-export const useTodo = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+export const useTodo = (initialTodos: Todo[] = []) => {
+  const [todos, setTodos] = useState(initialTodos);
 
   const addTodo = (text: string) => {
     if (!text) return;
@@ -11,5 +11,15 @@ export const useTodo = () => {
     setTodos([...todos, newTodo]);
   }
 
-  return { todos, addTodo };
+  const deleteTodo = (id: string) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
+
+  const toggleTodo = (id: string) => {
+    setTodos(todos.map((todo) => {
+      return todo.id === id ? {...todo, completed: !todo.completed} : {...todo};
+    }))
+  }
+
+  return { todos, addTodo, deleteTodo, toggleTodo };
 };
