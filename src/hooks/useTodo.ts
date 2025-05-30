@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { TodoTask } from 'classes/TodoTask';
 import { Todo } from 'types/Todo';
+import { Filter } from 'types/Filter';
 
 export const useTodo = (initialTodos: Todo[] = []) => {
   const [todos, setTodos] = useState(initialTodos);
+  const [filter, setFilter] = useState<Filter>('all');
 
   const addTodo = (text: string) => {
     if (!text) return;
@@ -21,5 +23,28 @@ export const useTodo = (initialTodos: Todo[] = []) => {
     }))
   }
 
-  return { todos, addTodo, deleteTodo, toggleTodo };
+  const deleteAllTodos = () => setTodos([]);
+
+  const resetCompletedTodos = () => setTodos(todos.filter((todo) => !todo.completed));
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'all') return true;
+    if (filter === 'completed') return todo.completed;
+    if (filter === 'active') return !todo.completed;
+
+    return todo;
+  });
+
+  const completedTodosCount = todos.filter((todo) => todo.completed).length;
+
+  return {
+    filteredTodos,
+    completedTodosCount,
+    addTodo,
+    deleteTodo,
+    toggleTodo,
+    setFilter,
+    deleteAllTodos,
+    resetCompletedTodos,
+  };
 };
